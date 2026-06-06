@@ -15,7 +15,7 @@ int decode_char(uint8_t c)
 {
     for (int i = 0; i < 85; ++i)
     {
-        if (ALPHABET[i] == c)
+        if (static_cast<unsigned char>(ALPHABET[i]) == c)
             return i;
     }
     return -1;
