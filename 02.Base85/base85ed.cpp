@@ -5,21 +5,21 @@
 
 namespace
 {
-    const char* ALPHABET =
-        "0123456789"
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        "abcdefghijklmnopqrstuvwxyz"
-        "!#$%&()*+-;<=>?@^_`{|}~";
+const char* ALPHABET =
+    "0123456789"
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    "abcdefghijklmnopqrstuvwxyz"
+    "!#$%&()*+-;<=>?@^_`{|}~";
 
-    int decode_char(uint8_t c)
+int decode_char(uint8_t c)
+{
+    for (int i = 0; i < 85; ++i)
     {
-        for (int i = 0; i < 85; ++i)
-        {
-            if (ALPHABET[i] == c)
-                return i;
-        }
-        return -1;
+        if (ALPHABET[i] == c)
+            return i;
     }
+    return -1;
+}
 }
 
 std::vector<uint8_t> base85::encode(const std::vector<uint8_t>& bytes)
