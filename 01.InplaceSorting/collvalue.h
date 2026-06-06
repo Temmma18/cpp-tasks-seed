@@ -56,11 +56,12 @@ public:
         return value < other.value;
     }
 
+    // a > b
     bool operator>(const CollectingValue& other) const
-{
-    comps++;
-    return value > other.value;
-}
+    {
+        comps++;
+        return value > other.value;
+    }
 
     // Для std::iota
     CollectingValue& operator++()
@@ -95,4 +96,3 @@ void swap(CollectingValue<T>& a, CollectingValue<T>& b)
 }
 
 #endif // COLLVALUE_H
-
