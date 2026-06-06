@@ -15,6 +15,13 @@ runs:
         cmake \
         clang clang-tidy
 
+    - name: Сборка libgtest
+      shell: bash
+      run: |
+        cd /usr/src/googletest
+        sudo cmake .
+        sudo cmake --build . --target install
+
     - name: Установка Python 3.12
       uses: actions/setup-python@v5
       with:
