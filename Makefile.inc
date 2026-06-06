@@ -2,14 +2,14 @@ CXX = g++
 CXXFLAGS = -Werror -Wpedantic -Wall
 CXXFLAGS_R = $(CXXFLAGS) -O3 -DNDEBUG
 CXXFLAGS_D = $(CXXFLAGS) -g  -DDEBUG
-GTEST_LIBS = -lgtest -lgtest_main -lpthread
+GTEST_LIBS = -L/usr/local/lib -lgtest -lgtest_main -lpthread
 LD=$(CXX)
 
 %.d.o : %.cpp
-	$(CXX) -c $(CXXFLAGS_D) -o $@ $<
+	$(CXX) -c $(CXXFLAGS_D) -o $@ $
 
 %.r.o : %.cpp
-	$(CXX) -c $(CXXFLAGS_R) -o $@ $<
+	$(CXX) -c $(CXXFLAGS_R) -o $@ $
 
 clean :
 	- rm *.o
