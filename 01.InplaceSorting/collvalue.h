@@ -89,3 +89,4 @@ void swap(CollectingValue<T>& a, CollectingValue<T>& b)
 }
 
 #endif // COLLVALUE_H
+
