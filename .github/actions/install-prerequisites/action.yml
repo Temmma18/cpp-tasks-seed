@@ -18,8 +18,9 @@ runs:
     - name: Сборка libgtest
       shell: bash
       run: |
+        sudo rm -f /usr/lib/x86_64-linux-gnu/libgtest*.a
         cd /usr/src/googletest
-        sudo cmake -DCMAKE_INSTALL_PREFIX=/usr .
+        sudo cmake -DCMAKE_INSTALL_PREFIX=/usr/local .
         sudo make
         sudo make install
         sudo ldconfig
