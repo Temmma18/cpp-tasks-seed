@@ -2,7 +2,7 @@ CXX = g++
 CXXFLAGS = -Werror -Wpedantic -Wall
 CXXFLAGS_R = $(CXXFLAGS) -O3 -DNDEBUG
 CXXFLAGS_D = $(CXXFLAGS) -g  -DDEBUG
-GTEST_LIBS = -L/usr/local/lib -lgtest -lgtest_main -lpthread
+GTEST_LIBS = -L/usr/local/lib -lgtest_main -lgtest -lpthread
 LD=$(CXX)
 
 %.d.o : %.cpp
