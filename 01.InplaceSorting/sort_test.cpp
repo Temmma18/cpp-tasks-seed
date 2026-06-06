@@ -1,53 +1,53 @@
-#include <gtest/gtest.h>
-#include <vector>
-#include <algorithm>
+#ifndef SORTING_H
+#define SORTING_H
 
-#include "sorting.h"
+#include "collvalue.h"
 
-// А вот тут collvalue.h не надо, берите просто инты
-#include "sorting.h"
-
-// Но проверьте, что сортировки таки работают...
-
-TEST(SortTest, BubbleSortWorks)
+template <typename Iterator>
+void bubble_sort(Iterator begin, Iterator end)
 {
-    std::vector<int> v = {5, 4, 3, 2, 1};
-    bubble_sort(v.begin(), v.end());
-
-    EXPECT_TRUE(std::is_sorted(v.begin(), v.end()));
+    for (auto i = begin; i != end; ++i)
+        for (auto j = begin; j + 1 != end; ++j)
+            if (*(j + 1) < *j)
+            {
+                auto t = *j;
+                *j = *(j + 1);
+                *(j + 1) = t;
+            }
 }
 
-TEST(SortTest, QuickSortWorks)
+template <typename Iterator>
+void quick_sort(Iterator begin, Iterator end)
 {
-    std::vector<int> v = {5, 1, 4, 2, 3};
-    quick_sort(v.begin(), v.end());
+    if (end - begin <= 1)
+        return;
 
-    EXPECT_TRUE(std::is_sorted(v.begin(), v.end()));
+    auto left = begin;
+    auto right = end - 1;
+    auto pivot = *(begin + (end - begin) / 2);
+
+    while (left <= right)
+    {
+        while (*left < pivot)
+            left++;
+        while (*right > pivot)
+            right--;
+
+        if (left <= right)
+        {
+            auto t = *left;
+            *left = *right;
+            *right = t;
+            left++;
+            right--;
+        }
+    }
+
+    if (begin < right)
+        quick_sort(begin, right + 1);
+
+    if (left < end)
+        quick_sort(left, end);
 }
 
-TEST(SortTest, EmptyArray)
-{
-    std::vector<int> v;
-    bubble_sort(v.begin(), v.end());
-    quick_sort(v.begin(), v.end());
-
-    EXPECT_TRUE(v.empty());
-}
-
-TEST(SortTest, OneElement)
-{
-    std::vector<int> v = {42};
-    bubble_sort(v.begin(), v.end());
-    quick_sort(v.begin(), v.end());
-
-    EXPECT_EQ(v[0], 42);
-}
-
-TEST(SortTest, AlreadySorted)
-{
-    std::vector<int> v = {1, 2, 3, 4, 5};
-    bubble_sort(v.begin(), v.end());
-    quick_sort(v.begin(), v.end());
-
-    EXPECT_TRUE(std::is_sorted(v.begin(), v.end()));
-}
+#endif // SORTING_H
