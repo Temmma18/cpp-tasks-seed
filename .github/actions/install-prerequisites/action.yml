@@ -19,8 +19,10 @@ runs:
       shell: bash
       run: |
         cd /usr/src/googletest
-        sudo cmake .
-        sudo cmake --build . --target install
+        sudo cmake -DCMAKE_INSTALL_PREFIX=/usr .
+        sudo make
+        sudo make install
+        sudo ldconfig
 
     - name: Установка Python 3.12
       uses: actions/setup-python@v5
